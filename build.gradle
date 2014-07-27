@@ -52,6 +52,12 @@ modifyPom {
     url 'https://github.com/thomaslee/gradle-beaver-plugin'
     inceptionYear '2014'
 
+    scm {
+      url 'https://github.com/thomaslee/gradle-beaver-plugin'
+      connection 'scm:git://github.com/thomaslee/gradle-beaver-plugin.git'
+      developerConnection 'scm:git@github.com:thomaslee/gradle-beaver-plugin.git'
+    }
+
     licenses {
       license {
         name 'Apache License 2.0'
