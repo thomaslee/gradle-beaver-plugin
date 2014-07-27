@@ -3,12 +3,23 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'nexus'
 
 group = 'co.tomlee.gradle.plugins'
 version = '0.0.1'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+  }
+}
 
 ext {
   beaverVersion = '0.9.11'
@@ -33,3 +44,33 @@ dependencies {
   compile "net.sf.beaver:beaver-cc:${beaverVersion}"
   testCompile "junit:junit:4.11"
 }
+
+modifyPom {
+  project {
+    name 'gradle-beaver-plugin'
+    description 'A Gradle plugin for the Beaver LALR parser generator'
+    url 'https://github.com/thomaslee/gradle-beaver-plugin'
+    inceptionYear '2014'
+
+    licenses {
+      license {
+        name 'Apache License 2.0'
+        url 'http://opensource.org/licenses/Apache-2.0'
+        distribution 'repo'
+      }
+    }
+
+    developers {
+      developer {
+        id 'thomaslee'
+        name 'Tom Lee'
+        email 'github@tomlee.co'
+      }
+    }
+  }
+}
+
+nexus {
+  sign = true
+}
+
