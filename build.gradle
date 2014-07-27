@@ -1,0 +1,36 @@
+// vim: ft=groovy:sw=2:ts=2:expandtab
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = 'co.tomlee.gradle.plugins'
+version = '0.0.1'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+ext {
+  beaverVersion = '0.9.11'
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+configurations {
+  beaver
+
+  compile {
+    extendsFrom beaver
+  }
+}
+
+dependencies {
+  compile gradleApi()
+  beaver "net.sf.beaver:beaver-ant:${beaverVersion}"
+  compile "net.sf.beaver:beaver-cc:${beaverVersion}"
+  testCompile "junit:junit:4.11"
+}
